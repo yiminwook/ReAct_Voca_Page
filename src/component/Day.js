@@ -1,9 +1,12 @@
+import { useParams } from "react-router-dom";
 import dummy from "../db/data.json";
+import Word from "./Word.js"
 
- const Day = () => {
-  const day = 2;
-  const wordList = dummy.words.filter(word => word.day === 1)
-  console.log(wordList)
+
+ const Day = () => { 
+
+  const day = Number(useParams().day);
+  const wordList = dummy.words.filter(word => word.day === day)
 
   return (
     <>
@@ -11,11 +14,7 @@ import dummy from "../db/data.json";
       <table>
         <tbody>
           {wordList.map(word => (
-            <tr key={word.id}>
-              <td>{word.eng}</td>
-              <td>{word.kor}</td>
-            </tr>
-            ))}
+            <Word word={word} key={word.id} />))}
         </tbody>
       </table>
     </>
