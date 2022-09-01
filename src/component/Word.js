@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const Word =({word}) => {
+const Word =({ word }) => {
   const [isShow, setIsShow] = useState(false);
   const [isDone, setIsDone] = useState(word.isDone);
 

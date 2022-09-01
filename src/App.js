@@ -6,6 +6,7 @@ import Day from './component/Day.js'
 import EmptyPage from './component/EmptyPage';
 
 // REST API json-server 설치
+// uri 주소와 http method로 CRUD요청
 // npm install -g json-server
 // json-server --watch ./src/db/data.json --port 3001
 
