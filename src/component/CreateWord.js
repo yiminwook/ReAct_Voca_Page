@@ -1,37 +1,51 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import useFetch from "../hooks/useFetch";
 
 const CreateWord = () => {
-  const days = useFetch("http://localhost:3001/days")
-  const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
 
-  const onSubmit = (e) => {
-    e.preventDefault(); //버튼을 눌러도 새로고침 되지않도록 함
-    
-    fetch(`http://localhost:3001/words/`,{
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        day: dayRef.current.value,
-        eng: engRef.current.value,
-        kor: korRef.current.value,
-        isDone: false
-      })
-    })
-    .then(res => {
-      if(res.ok){
-        alert("단어가 추가 되었습니다.");
-        navigate(`/day/${dayRef.current.value}`)
-      }
-    });
-  }
-
+  const days = useFetch("http://localhost:3001/days");
   const engRef = useRef(null);  //DOM에 접근
   const korRef = useRef(null);
   const dayRef = useRef(null);
+  const navigate = useNavigate();
+
+  const onSubmit = (e) => {
+    const day = dayRef.current.value;
+    const eng = engRef.current.value;
+    const kor = korRef.current.value;
+
+    e.preventDefault(); //버튼을 눌러도 새로고침 되지않도록 함
+  
+    if ( !isLoading && day && eng && kor ) {
+      setIsLoading(true);
+
+      fetch(`http://localhost:3001/words/`,{
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          day,
+          eng,
+          kor,
+          isDone: false
+        })
+      })
+      .then(res => {
+        if(res.ok){
+          alert("단어가 추가 되었습니다.");
+          navigate(`/day/${day}`)
+          setIsLoading(false);
+        }
+      });
+    }
+  }
+
+  if(days.length === 0){
+    return <span>Loading...</span>;
+  }
 
   return (
     <form onSubmit={onSubmit}>
@@ -53,7 +67,7 @@ const CreateWord = () => {
           ))}
         </select>
       </div>
-      <button>저장</button>
+      <button>{isLoading ? "Saving..." : "단어 추가"}</button>
     </form>
   );
 }
