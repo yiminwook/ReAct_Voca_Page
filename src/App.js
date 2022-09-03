@@ -3,7 +3,10 @@ import './App.css';
 import DayList from './component/DayList.js';
 import Header from './component/Header.js';
 import Day from './component/Day.js'
+import CreateWord from './component/CreateWord';
+import CreateDay from './component/CreateDay';
 import EmptyPage from './component/EmptyPage';
+
 
 // REST API json-server 설치
 // uri 주소와 http method로 CRUD요청
@@ -19,6 +22,8 @@ function App() {
           <Routes>
            <Route path="/" element={<DayList />} />
            <Route path="/day/:day"  element={<Day />} />
+           <Route path="/create_word" element={<CreateWord/>} />
+           <Route path="/create_day" element={<CreateDay/>} />
            <Route path="*" element={<EmptyPage/>} />
           </Routes>
       </div>

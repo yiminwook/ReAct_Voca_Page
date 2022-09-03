@@ -57,7 +57,7 @@ const Word =(props) => {
         <button onClick={del} className='btn_del' >삭제</button>
       </td>
      </tr>
-  )
+  );
 }
 
 export default Word;
