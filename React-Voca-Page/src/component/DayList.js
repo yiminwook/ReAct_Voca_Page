@@ -5,7 +5,7 @@ const DayList = () => {
   const days = useFetch("http://localhost:3001/days");
 
   if (days.length === 0) {
-    return <span>Loading...</span>
+    return <span>Loading...</span>;
   }
 
   return ( 

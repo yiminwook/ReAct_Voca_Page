@@ -7,7 +7,6 @@ import CreateWord from './component/CreateWord';
 import CreateDay from './component/CreateDay';
 import EmptyPage from './component/EmptyPage';
 
-
 // REST API json-server 설치
 // uri 주소와 http method로 CRUD요청
 // npm install -g json-server
@@ -17,7 +16,6 @@ function App() {
   return (
     <BrowserRouter>
       <div className="App">
- 
          <Header />
           <Routes>
            <Route path="/" element={<DayList />} />

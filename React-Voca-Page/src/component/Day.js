@@ -4,7 +4,6 @@ import Word from "./Word.js"
 
 
  const Day = () => { 
-  // const day = useParams().day;
   const { day } = useParams();
   const words = useFetch(`http://localhost:3001/words?day=${day}`);
 
