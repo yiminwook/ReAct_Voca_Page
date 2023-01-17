@@ -1,3 +1,15 @@
 .App {
   text-align: left;
 }
+
+.container,
+.container div > div {
+  border: 5px solid red;
+  margin: 5px;
+  padding: 5px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
